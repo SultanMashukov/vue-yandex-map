@@ -62,13 +62,14 @@ export default {
       type: Array,
       default: () => [],
     },
+    balloonHtmlContent:{
+      type: String,
+      default: '',
+    }
   },
   data: () => ({ unwatchArr: [] }),
   render(h) {
-    return h('div', [
-      this.$slots.balloon && h('div', { style: 'display: none;' }, [this.$slots.balloon]),
-      this.$slots.balloonLayout && h('div', { style: 'display: none;' }, [this.$slots.balloonLayout])
-    ]);
+    return h(null);
   },
   mounted() {
     Object.keys(this.$props).forEach((prop) => {
@@ -110,10 +111,9 @@ export default {
           .createClass(this.balloonTemplate);
       }
 
-      if (this.$slots.balloon) {
-        balloonContentLayout = ymaps.templateLayoutFactory
-          .createClass(this.$slots.balloon[0].elm.outerHTML);
-      }
+      
+      balloonContentLayout = ymaps.templateLayoutFactory.createClass(this.balloonHtmlContent);
+      
 
       if (this.$slots.balloonLayout) {
         balloonLayout = ymaps.templateLayoutFactory

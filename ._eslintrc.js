@@ -26,6 +26,7 @@ module.exports = {
     }],
     "vue/no-v-html": 0,
     "vue/require-default-prop": 0,
+    "indent": ["error", 4]
     
   },
   "parserOptions": {
